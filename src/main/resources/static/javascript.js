@@ -1,9 +1,9 @@
 function myFunction() {
     var request = new XMLHttpRequest();
-    request.open('GET','http://localhost:8080/User/Users');
+    request.open('GET','http://localhost:8080/sw/people');
     request.onload = function(){
         var ourData = JSON.parse(request.responseText);
-        document.getElementById("demo").innerHTML = ourData[0].name;
+        document.getElementById("demo").innerHTML = ourData.name;
     };
     request.send();
 }

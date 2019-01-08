@@ -24,8 +24,9 @@ public class SWAPIService {
 	RestTemplate rest;
 
 	@Async
-    public void callRestService(){
+    public String callRestService(){
 		RestTemplate restTemplate = new RestTemplate();
+		System.out.println("entrou na chamada da api");
 		try {
 			HttpHeaders headers = new HttpHeaders();
 			headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON_UTF8));
@@ -37,21 +38,24 @@ public class SWAPIService {
 			//a segunda é mapeando o request em um objeto, porem é preciso conhecer a estrutura do serviço
 
 			//1° forma
-			//ResponseEntity<String> response = restTemplate.exchange("https://swapi.co/api/people/1", HttpMethod.GET, entity,String.class);
+			ResponseEntity<String> response = restTemplate.exchange("https://swapi.co/api/people/1", HttpMethod.GET, entity,String.class);
 
 			//2° forma
-			ResponseEntity<PersonSW> response = restTemplate.exchange("https://swapi.co/api/people/1", HttpMethod.GET, entity, PersonSW.class);
+			//ResponseEntity<PersonSW> response = restTemplate.exchange("https://swapi.co/api/people/1", HttpMethod.GET, entity, PersonSW.class);
 
 			//1° forma
-			//LOGGER.info("Resposta" + response.getBody());
+			LOGGER.info("Resposta" + response.getBody());
 
 			//2° forma
-			LOGGER.info("Nome:" + response.getBody().getName());
+			//LOGGER.info("Nome:" + response.getBody().getName());
+			return response.getBody();
 
 
 		}catch(Exception e){
 			LOGGER.error(e.getMessage());
 		}
+		System.out.println("deu ruim");
+		return null;
     }
 
 }
