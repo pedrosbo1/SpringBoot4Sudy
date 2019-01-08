@@ -9,6 +9,7 @@ import com.example.demo.entity.User;
 import com.example.demo.entity.UserM;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.UserRepositoryMongo;
+import com.example.demo.service.SWAPIService;
 
 @Component
 public class DataInitilizr implements ApplicationListener<ContextRefreshedEvent> {
@@ -18,6 +19,9 @@ public class DataInitilizr implements ApplicationListener<ContextRefreshedEvent>
 	
 	@Autowired
 	UserRepositoryMongo userRepositoryMongo;
+	
+	@Autowired
+	SWAPIService Swapi;
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -33,6 +37,8 @@ public class DataInitilizr implements ApplicationListener<ContextRefreshedEvent>
 		
 		User user1 = userRepository.findByName("Pedro");
 		System.out.println(user1.getName());
+		
+		Swapi.callRestService();
 		
 		//UserM userM = userRepositoryMongo.findByName("batata");
 		//System.out.println(userM.getName());
