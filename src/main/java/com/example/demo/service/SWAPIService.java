@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.entity.PersonSW;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,9 +33,21 @@ public class SWAPIService {
 
 			HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
 
-			ResponseEntity<String> response = restTemplate.exchange("https://swapi.co/api/people/1", HttpMethod.GET, entity,String.class);
+			//há duas maneiras de pegar a mensagem, a primeira é pegando toda a mensagem com uma classe generica, pode ser a String ou Object
+			//a segunda é mapeando o request em um objeto, porem é preciso conhecer a estrutura do serviço
 
-			LOGGER.info("Resposta: " + response.getBody());
+			//1° forma
+			//ResponseEntity<String> response = restTemplate.exchange("https://swapi.co/api/people/1", HttpMethod.GET, entity,String.class);
+
+			//2° forma
+			ResponseEntity<PersonSW> response = restTemplate.exchange("https://swapi.co/api/people/1", HttpMethod.GET, entity, PersonSW.class);
+
+			//1° forma
+			//LOGGER.info("Resposta" + response.getBody());
+
+			//2° forma
+			LOGGER.info("Nome:" + response.getBody().getName());
+
 
 		}catch(Exception e){
 			LOGGER.error(e.getMessage());
