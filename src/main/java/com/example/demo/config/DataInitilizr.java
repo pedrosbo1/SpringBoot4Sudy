@@ -38,7 +38,7 @@ public class DataInitilizr implements ApplicationListener<ContextRefreshedEvent>
 		User user1 = userRepository.findByName("Pedro");
 		System.out.println(user1.getName());
 		
-		Swapi.callRestService();
+		//Swapi.callRestService();
 		
 		//UserM userM = userRepositoryMongo.findByName("batata");
 		//System.out.println(userM.getName());

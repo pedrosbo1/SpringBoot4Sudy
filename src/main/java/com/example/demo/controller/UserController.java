@@ -18,7 +18,7 @@ public class UserController {
 	
 	@RequestMapping("/Users")
 	public List<User> getUsers() {
-		System.out.println("chegou na bagaça da rota");
+		System.out.println("chegou na rota users");
 		return userService.getListOfUsers();
 	}
 
