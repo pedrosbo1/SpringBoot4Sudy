@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.service.SWAPIService;
+import com.example.demo.service.TweeterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +15,15 @@ public class SwController {
     @Autowired
     SWAPIService swapiService;
 
+
     @GetMapping("/people")
     public ResponseEntity getPeople() {
         System.out.println("getPeople");
         String response = swapiService.callRestService();
         System.out.println("deu resposta:" + response);
-            return ResponseEntity.ok(response);
+        return ResponseEntity.ok(response);
     }
+
+
 
 }
