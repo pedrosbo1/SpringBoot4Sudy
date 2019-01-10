@@ -20,7 +20,8 @@ public class WatsonController {
     MyWatsonService myWatsonService;
 
     @GetMapping("/test")
-    public void callWatsonAnalyzeText(String text) {
-        myWatsonService.callWatson();
+    public void callWatsonAnalyzeText() {
+        String text = "";
+        myWatsonService.callWatson(text);
     }
 }

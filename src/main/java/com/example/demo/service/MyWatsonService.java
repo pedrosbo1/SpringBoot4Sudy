@@ -9,7 +9,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyWatsonService {
 
-    public void callWatson(){
+    public String callWatson(String text){
+        String text2 = text;
         IamOptions options = new IamOptions.Builder()
                 .apiKey("uyHj0mhgrFXcZKZsWlKEQtBE01sWXLdZN5rCSlI0cFcl")
                 .build();
@@ -24,7 +25,7 @@ public class MyWatsonService {
                 + "sales have been disappointing for the past three "
                 + "quarters. We have a competitive product, but we "
                 + "need to do a better job of selling it!";*/
-        String text = "Eu estou muito feliz de conseguir realizar essa chamada na api";
+        //String text = "Eu estou muito feliz de conseguir realizar essa chamada na api";
 
 
         ToneOptions toneOptions = new ToneOptions.Builder()
@@ -33,5 +34,6 @@ public class MyWatsonService {
 
         ToneAnalysis toneAnalysis = toneAnalyzer.tone(toneOptions).execute();
         System.out.println(toneAnalysis);
+        return toneAnalysis.toString();
     }
 }

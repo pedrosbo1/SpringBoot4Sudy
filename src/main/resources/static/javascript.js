@@ -11,8 +11,8 @@ function getTweet() {
     var request = new XMLHttpRequest();
     request.open('GET','http://localhost:8080/tw/gettweet?name=@DaitanCareers');
     request.onload = function(){
-        var ourData = JSON.parse(request.responseText);
-        document.getElementById("demo").innerHTML = ourData[1].text;
+        var ourData = request.responseText.toString();
+        document.getElementById("demo").innerHTML = ourData;
     };
     request.send();
 }
