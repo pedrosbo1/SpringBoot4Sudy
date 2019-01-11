@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.TwitterMessage;
+import com.example.demo.entity.TwitterMessageTag;
 import com.example.demo.service.MyWatsonService;
 import com.example.demo.service.TwitterService;
 import com.google.gson.JsonObject;
@@ -25,17 +26,17 @@ public class TwitterController {
     @GetMapping("/twittetone")
     public ResponseEntity getTwiite(@RequestParam("name") String tweeterName ) {
         System.out.println(tweeterName);
-        List<TwitterMessage> listOfTwitter = twitterService.getTweets(tweeterName);
+        TwitterMessage[] listOfTwitter = twitterService.getTweets(tweeterName);
 
 
-        String message = "";
+      /*  String message = "";
         for(int i=0;i<listOfTwitter.size();i++){
             message = message + "\n" + listOfTwitter.get(i).getMessage();
-        }
+        }*/
 
 
 
-        String result = myWatsonService.callWatson(message);
+        String result = myWatsonService.callWatson("ok");
 
         return ResponseEntity.ok(result);
     }
@@ -43,12 +44,12 @@ public class TwitterController {
     @GetMapping("/keywordtone")
     public ResponseEntity getToneKeyWord(@RequestParam("keyword") String keyWord ) {
         System.out.println(keyWord);
-        List<TwitterMessage> listOfTwitter = twitterService.seatchTwitte(keyWord);
+        TwitterMessageTag listOfTwitter = twitterService.seatchTwitte(keyWord);
 
 
         String message = "";
-        for(int i=0;i<listOfTwitter.size();i++){
-            message = message + "\n" + listOfTwitter.get(i).getMessage();
+        for(int i=0;i<listOfTwitter.getStatuses().size();i++){
+            message = message + "\n" + listOfTwitter.getStatuses().get(i).getMessage();
         }
         String result = myWatsonService.callWatson(message);
 
