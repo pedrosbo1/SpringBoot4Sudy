@@ -17,44 +17,38 @@ import java.util.List;
 @RequestMapping("/tw")
 public class TwitterController {
 
-    @Autowired
-    TwitterService twitterService;
+  @Autowired
+  TwitterService twitterService;
 
-    @Autowired
-    MyWatsonService myWatsonService;
+  @Autowired
+  MyWatsonService myWatsonService;
 
-    @GetMapping("/twittetone")
-    public ResponseEntity getTwiite(@RequestParam("name") String tweeterName ) {
-        System.out.println(tweeterName);
-        TwitterMessage[] listOfTwitter = twitterService.getTweets(tweeterName);
-
-
-      /*  String message = "";
+  @GetMapping("/twittetone")
+  public ResponseEntity getTwiite(@RequestParam("name") String tweeterName) {
+    System.out.println(tweeterName);
+    TwitterMessage[] listOfTwitter = twitterService.getTweets(tweeterName);
+      /* String message = "";
         for(int i=0;i<listOfTwitter.size();i++){
             message = message + "\n" + listOfTwitter.get(i).getMessage();
         }*/
+    //String result = myWatsonService.callWatson("ok");
+    return ResponseEntity.ok("");
+  }
+
+  @GetMapping("/keywordtone")
+  public ResponseEntity getToneKeyWord(@RequestParam("keyword") String keyWord) {
+    System.out.println(keyWord);
+    TwitterMessageTag listOfTwitter = twitterService.seatchTwitte(keyWord);
 
 
-
-        String result = myWatsonService.callWatson("ok");
-
-        return ResponseEntity.ok(result);
+    String message = "";
+    for (int i = 0; i < listOfTwitter.getStatuses().size(); i++) {
+      message = message + "\n" + listOfTwitter.getStatuses().get(i).getMessage();
     }
+    String result = myWatsonService.callWatson(message);
 
-    @GetMapping("/keywordtone")
-    public ResponseEntity getToneKeyWord(@RequestParam("keyword") String keyWord ) {
-        System.out.println(keyWord);
-        TwitterMessageTag listOfTwitter = twitterService.seatchTwitte(keyWord);
-
-
-        String message = "";
-        for(int i=0;i<listOfTwitter.getStatuses().size();i++){
-            message = message + "\n" + listOfTwitter.getStatuses().get(i).getMessage();
-        }
-        String result = myWatsonService.callWatson(message);
-
-        return ResponseEntity.ok(result);
-    }
+    return ResponseEntity.ok(result);
+  }
 
 
 
