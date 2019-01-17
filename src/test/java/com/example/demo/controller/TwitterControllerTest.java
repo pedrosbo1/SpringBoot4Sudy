@@ -36,16 +36,24 @@ public class TwitterControllerTest {
   @Before
   public void setUp() throws Exception {
     MockitoAnnotations.initMocks(this);
+    TwitterMessage twitterMessage1 = new TwitterMessage();
+    TwitterMessage twitterMessage2 = new TwitterMessage();
     twitterMessages = new ArrayList<TwitterMessage>();
-    twitterMessages.add(new TwitterMessage());
     twitterMessageTag = new TwitterMessageTag();
+
+    twitterMessage1.setMessage("mensagem");
+    twitterMessage2.setMessage("mocada");
+
+    twitterMessages.add(twitterMessage1);
+    twitterMessages.add(twitterMessage2);
+
     twitterMessageTag.setStatuses(twitterMessages);
   }
 
   @Test
   public void getTwiite() {
     Mockito.when(twitterService.getTweets(Mockito.any())).thenReturn(twitterMessages);
-    Mockito.when(myWatsonService.callWatson(Mockito.anyString())).thenReturn("ok");
+    Mockito.when(myWatsonService.callWatson("\nmensagem\nmocada")).thenReturn("ok");
     String retorno = twitterController.getTwiite(Mockito.anyString()).getBody().toString();
     assertTrue(retorno.equals("ok"));
   }
@@ -53,8 +61,8 @@ public class TwitterControllerTest {
   @Test
   public void getToneKeyWord() {
     Mockito.when(twitterService.seatchTwitte(Mockito.anyString())).thenReturn(twitterMessageTag);
-    Mockito.when(myWatsonService.callWatson(Mockito.anyString())).thenReturn("eae");
+    Mockito.when(myWatsonService.callWatson("\nmensagem\nmocada")).thenReturn("ok");
     String retorno = twitterController.getToneKeyWord(Mockito.anyString()).getBody().toString();
-    assertTrue(retorno.equals("eae"));
+    assertTrue(retorno.equals("ok"));
   }
 }

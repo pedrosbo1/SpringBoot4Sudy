@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.TwitterMessage;
-import com.example.demo.entity.TwitterMessageTag;
 import com.example.demo.service.MyWatsonService;
 import com.example.demo.service.TwitterService;
 import org.springframework.beans.factory.annotation.Autowired;
