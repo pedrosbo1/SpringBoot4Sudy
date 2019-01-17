@@ -6,14 +6,12 @@ import com.example.demo.entity.TwitterMessage;
 import com.example.demo.entity.TwitterMessageTag;
 import com.example.demo.service.MyWatsonService;
 import com.example.demo.service.TwitterService;
-import com.ibm.watson.developer_cloud.service.WatsonService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.context.TestComponent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +58,7 @@ public class TwitterControllerTest {
 
   @Test
   public void getToneKeyWord() {
-    Mockito.when(twitterService.seatchTwitte(Mockito.anyString())).thenReturn(twitterMessageTag);
+    Mockito.when(twitterService.searchTwitte(Mockito.anyString())).thenReturn(twitterMessageTag);
     Mockito.when(myWatsonService.callWatson("\nmensagem\nmocada")).thenReturn("ok");
     String retorno = twitterController.getToneKeyWord(Mockito.anyString()).getBody().toString();
     assertTrue(retorno.equals("ok"));

@@ -1,10 +1,13 @@
 package com.example.demo.entity;
 
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
 
+@Document
 public class TwitterMessage {
 
-    String text;
+    private long id;
+    private String text;
 
     public String getMessage() {
         return text;
