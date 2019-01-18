@@ -39,8 +39,6 @@ public class TwitterController {
         imageService.getImageFromUrl(a,Integer.toString(i));
       }
     }
-
-
     //twitterMessageRepository.saveAll(listOfTwitter);
     //String result = myWatsonService.callWatson(message);
     return ResponseEntity.ok(message);
