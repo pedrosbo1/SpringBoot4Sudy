@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.TwitterMessage;
 import com.example.demo.repository.TwitterMessageRepository;
+import com.example.demo.service.ImageService;
 import com.example.demo.service.MyWatsonService;
 import com.example.demo.service.TwitterService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,17 +24,26 @@ public class TwitterController {
   @Autowired
   TwitterMessageRepository twitterMessageRepository;
 
+  @Autowired
+  ImageService imageService;
+
   @GetMapping("/twittetone")
   public ResponseEntity getTwiite(@RequestParam("name") String tweeterName) {
     String message = "";
     List<TwitterMessage> listOfTwitter = twitterService.getTweets(tweeterName);
     for (int i = 0; i < listOfTwitter.size(); i++) {
       message = message + "\n" + listOfTwitter.get(i).getMessage();
+
+      if(listOfTwitter.get(i).getEntities().getMedia() != null) {
+        String a = listOfTwitter.get(i).getEntities().getMedia().get(0).getMediaurl();
+        imageService.getImageFromUrl(a,Integer.toString(i));
+      }
     }
 
+
     //twitterMessageRepository.saveAll(listOfTwitter);
-    String result = myWatsonService.callWatson(message);
-    return ResponseEntity.ok("ok");
+    //String result = myWatsonService.callWatson(message);
+    return ResponseEntity.ok(message);
   }
   @GetMapping("/keywordtone")
   public ResponseEntity getToneKeyWord(@RequestParam("keyword") String keyWord) {
@@ -42,8 +52,12 @@ public class TwitterController {
     int end = listOfTwitter.size();
     for (int i = 0; i < end; i++) {
       message = message + "\n" + listOfTwitter.get(i).getMessage();
+      if(listOfTwitter.get(i).getEntities().getMedia() != null) {
+        String a = listOfTwitter.get(i).getEntities().getMedia().get(0).getMediaurl();
+        imageService.getImageFromUrl(a,Integer.toString(i));
+      }
     }
-    String result = myWatsonService.callWatson(message);
-    return ResponseEntity.ok(result);
+    //String result = myWatsonService.callWatson(message);
+    return ResponseEntity.ok(message);
   }
 }

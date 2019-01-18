@@ -34,22 +34,4 @@ public class TwitterServiceTest {
 
   }
 
-  @Test
-  public void test4Test(){
-
-    Mockito.doReturn("retorno").when(twitterMessage).getMessage();
-    String a = twitterMessage.getMessage();
-    String b = twitterService.test4Test();
-
-
-    twitterMessage.setMessage("hello");
-    Mockito.verify(twitterMessage).setMessage("hello");
-
-
-
-
-    Mockito.verify(twitterMessage).setMessage("eae");
-    assertTrue(twitterService.test4Test().equals("retorno"));
-  }
-
 }

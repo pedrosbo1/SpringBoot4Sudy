@@ -8,6 +8,16 @@ public class TwitterMessage {
 
     private long id;
     private String text;
+    private Entities entities;
+
+
+    public Entities getEntities() {
+        return entities;
+    }
+
+    public void setEntities(Entities entities) {
+        this.entities = entities;
+    }
 
     public String getMessage() {
         return text;
