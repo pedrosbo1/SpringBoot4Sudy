@@ -32,11 +32,13 @@ public class TwitterServiceTest {
   public void getTweets() throws ApiError {
     Mockito.when(twitterAPIService.callAPI(
         "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=" + "eae"
-            + "&count=100&trim_user=false", Mockito.anyString()))
+            + "&count=100&trim_user=false",
+        "Bearer AAAAAAAAAAAAAAAAAAAAAGUY6AAAAAAA35b1KsdwTRmwAB%2FU16GJXeSRXv8"
+            + "%3DnEKkx6QmRRXaTPcHBSHOs63H7eN9xr7QrRehdFTYeTIDjoZQjX"))
         .thenReturn("[{\"text\": \"batata\"},{\"text\": \"cenoura\"}]");
     List<TwitterMessage> list = twitterService.getTweets("eae");
-    //assertEquals(list.get(0).getMessage(),"batata");
-    //assertEquals(list.get(1).getMessage(),"cenoura");
+    assertEquals(list.get(0).getMessage(), "batata");
+    assertEquals(list.get(1).getMessage(),"cenoura");
   }
 
   @Test

@@ -32,7 +32,6 @@ public class TwitterService {
 
     try {
       body = twitterAPIService.callAPI(url,token);
-
     } catch (ApiError apiError) {
       apiError.printStackTrace();
       return null;
