@@ -41,7 +41,7 @@ public class TwitterService {
     return twitterMessageList;
   }
 
-  public TwitterMessageTag searchTwitte(String keyword) {
+  public TwitterMessageTag searchTweets(String keyword) {
 
     String body;
     String url = "https://api.twitter.com/1.1/search/tweets.json?q=" + keyword + "&count=100&result_type=popular";

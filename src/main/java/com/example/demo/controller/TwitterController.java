@@ -46,7 +46,7 @@ public class TwitterController {
   @GetMapping("/keywordtone")
   public ResponseEntity getToneKeyWord(@RequestParam("keyword") String keyWord) {
     String message = "";
-    List<TwitterMessage> listOfTwitter = twitterService.searchTwitte(keyWord).getStatuses();
+    List<TwitterMessage> listOfTwitter = twitterService.searchTweets(keyWord).getStatuses();
     int end = listOfTwitter.size();
     for (int i = 0; i < end; i++) {
       message = message + "\n" + listOfTwitter.get(i).getMessage();

@@ -3,6 +3,7 @@ package com.example.demo.service;
 import static org.junit.Assert.*;
 
 import com.example.demo.entity.TwitterMessage;
+import com.example.demo.entity.TwitterMessageTag;
 import com.example.demo.exceptions.ApiError;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,12 +39,20 @@ public class TwitterServiceTest {
         .thenReturn("[{\"text\": \"batata\"},{\"text\": \"cenoura\"}]");
     List<TwitterMessage> list = twitterService.getTweets("eae");
     assertEquals(list.get(0).getMessage(), "batata");
-    assertEquals(list.get(1).getMessage(),"cenoura");
+    assertEquals(list.get(1).getMessage(), "cenoura");
   }
 
   @Test
-  public void seatchTwitte() {
-
+  public void searchTweets() throws ApiError {
+    Mockito.when(twitterAPIService.callAPI(
+        "https://api.twitter.com/1.1/search/tweets.json?q=" + "eae"
+            + "&count=100&result_type=popular",
+        "Bearer AAAAAAAAAAAAAAAAAAAAAGUY6AAAAAAA35b1KsdwTRmwAB%2FU16GJXeSRXv8"
+            + "%3DnEKkx6QmRRXaTPcHBSHOs63H7eN9xr7QrRehdFTYeTIDjoZQjX"))
+        .thenReturn("{\"statuses\":[{\"text\": \"batata\"},{\"text\": \"cenoura\"}]}");
+    TwitterMessageTag tw = twitterService.searchTweets("eae");
+    assertEquals(tw.getStatuses().get(0).getMessage(), "batata");
+    assertEquals(tw.getStatuses().get(1).getMessage(), "cenoura");
   }
 
 }

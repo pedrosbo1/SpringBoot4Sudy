@@ -58,7 +58,7 @@ public class TwitterControllerTest {
 
   @Test
   public void getToneKeyWord() {
-    Mockito.when(twitterService.searchTwitte(Mockito.anyString())).thenReturn(twitterMessageTag);
+    Mockito.when(twitterService.searchTweets(Mockito.anyString())).thenReturn(twitterMessageTag);
     Mockito.when(myWatsonService.callWatson("\nmensagem\nmocada")).thenReturn("ok");
     String retorno = twitterController.getToneKeyWord(Mockito.anyString()).getBody().toString();
     assertTrue(retorno.equals("ok"));
