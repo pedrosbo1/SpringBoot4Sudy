@@ -23,17 +23,12 @@ public class ImageService {
       e.printStackTrace();
     }
     BufferedImage img = null;
-    try {
-      img = ImageIO.read(url);
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
     File file = new File("/home/pcatalini/Documents/fotosTW/"+photoName);
     try {
+      img = ImageIO.read(url);
       ImageIO.write(img, "jpg", file);
     } catch (IOException e) {
       e.printStackTrace();
     }
-
   }
 }

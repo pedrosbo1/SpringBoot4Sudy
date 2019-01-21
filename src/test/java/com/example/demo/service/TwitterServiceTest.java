@@ -41,6 +41,17 @@ public class TwitterServiceTest {
     assertEquals(list.get(0).getMessage(), "batata");
     assertEquals(list.get(1).getMessage(), "cenoura");
   }
+  @Test
+  public void getTweetsError() throws ApiError {
+    Mockito.when(twitterAPIService.callAPI(
+        "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=" + "eae"
+            + "&count=100&trim_user=false",
+        "Bearer AAAAAAAAAAAAAAAAAAAAAGUY6AAAAAAA35b1KsdwTRmwAB%2FU16GJXeSRXv8"
+            + "%3DnEKkx6QmRRXaTPcHBSHOs63H7eN9xr7QrRehdFTYeTIDjoZQjX"))
+        .thenThrow(ApiError.class);
+    List<TwitterMessage> list = twitterService.getTweets("eae");
+    assertEquals(list, null);
+  }
 
   @Test
   public void searchTweets() throws ApiError {
@@ -55,4 +66,14 @@ public class TwitterServiceTest {
     assertEquals(tw.getStatuses().get(1).getMessage(), "cenoura");
   }
 
+  @Test
+  public void searchTweetsError() throws ApiError {
+    Mockito.when(twitterAPIService.callAPI(
+        "https://api.twitter.com/1.1/search/tweets.json?q=" + "eae"
+            + "&count=100&result_type=popular",
+        "Bearer AAAAAAAAAAAAAAAAAAAAAGUY6AAAAAAA35b1KsdwTRmwAB%2FU16GJXeSRXv8"
+            + "%3DnEKkx6QmRRXaTPcHBSHOs63H7eN9xr7QrRehdFTYeTIDjoZQjX")).thenThrow(ApiError.class);
+    TwitterMessageTag tw = twitterService.searchTweets("eae");
+    assertEquals(tw,null);
+  }
 }

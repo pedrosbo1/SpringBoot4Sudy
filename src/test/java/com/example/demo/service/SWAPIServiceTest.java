@@ -5,13 +5,12 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-public class MyWatsonServiceTest {
+public class SWAPIServiceTest {
 
   @InjectMocks
-  MyWatsonService myWatsonService;
+  SWAPIService swapiService;
 
   @Before
   public void setUp() throws Exception {
@@ -19,8 +18,9 @@ public class MyWatsonServiceTest {
   }
 
   @Test
-  public void callWatson() {
-
-
+  public void callRestService() {
+    swapiService.callRestService();
   }
+
+
 }

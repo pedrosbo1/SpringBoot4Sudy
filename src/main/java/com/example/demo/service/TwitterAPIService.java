@@ -16,6 +16,7 @@ import java.util.Arrays;
 public class TwitterAPIService {
 
   public String callAPI(String url, String autentication) throws ApiError {
+    ResponseEntity<String> response;
     String body;
     RestTemplate restTemplate = new RestTemplate();
     HttpHeaders headers = new HttpHeaders();
@@ -26,10 +27,13 @@ public class TwitterAPIService {
     headers.add("Authorization",
         autentication);
     entity = new HttpEntity<String>("parameters", headers);
-    ResponseEntity<String> response = restTemplate.exchange(
-        url, HttpMethod.GET, entity, String.class);
+    try {
+      response = restTemplate.exchange(
+          url, HttpMethod.GET, entity, String.class);
+    }catch(Exception e){
+        throw new ApiError("Bad Request");
+      }
 
-    //validation
     if(response.getStatusCode().is2xxSuccessful()){
       body = response.getBody();
       return body;

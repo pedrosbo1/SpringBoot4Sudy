@@ -27,11 +27,14 @@ public class TwitterService {
 
   public List<TwitterMessage> getTweets(String twitterId) {
     String body;
-    String url = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name="+twitterId+"&count=100&trim_user=false";
-    String token = "Bearer AAAAAAAAAAAAAAAAAAAAAGUY6AAAAAAA35b1KsdwTRmwAB%2FU16GJXeSRXv8%3DnEKkx6QmRRXaTPcHBSHOs63H7eN9xr7QrRehdFTYeTIDjoZQjX";
+    String url = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=" + twitterId
+        + "&count=100&trim_user=false";
+    String token =
+        "Bearer AAAAAAAAAAAAAAAAAAAAAGUY6AAAAAAA35b1KsdwTRmwAB%2FU16GJXeSRXv8"
+            + "%3DnEKkx6QmRRXaTPcHBSHOs63H7eN9xr7QrRehdFTYeTIDjoZQjX";
 
     try {
-      body = twitterAPIService.callAPI(url,token);
+      body = twitterAPIService.callAPI(url, token);
     } catch (ApiError apiError) {
       apiError.printStackTrace();
       return null;
@@ -42,12 +45,14 @@ public class TwitterService {
   }
 
   public TwitterMessageTag searchTweets(String keyword) {
-
     String body;
-    String url = "https://api.twitter.com/1.1/search/tweets.json?q=" + keyword + "&count=100&result_type=popular";
-    String token = "Bearer AAAAAAAAAAAAAAAAAAAAAGUY6AAAAAAA35b1KsdwTRmwAB%2FU16GJXeSRXv8%3DnEKkx6QmRRXaTPcHBSHOs63H7eN9xr7QrRehdFTYeTIDjoZQjX";
+    String url = "https://api.twitter.com/1.1/search/tweets.json?q=" + keyword
+        + "&count=100&result_type=popular";
+    String token =
+        "Bearer AAAAAAAAAAAAAAAAAAAAAGUY6AAAAAAA35b1KsdwTRmwAB%2FU16GJXeSRXv8"
+            + "%3DnEKkx6QmRRXaTPcHBSHOs63H7eN9xr7QrRehdFTYeTIDjoZQjX";
     try {
-      body = twitterAPIService.callAPI(url,token);
+      body = twitterAPIService.callAPI(url, token);
     } catch (ApiError apiError) {
       apiError.printStackTrace();
       return null;
