@@ -13,37 +13,41 @@ import com.example.demo.service.SWAPIService;
 
 @Component
 public class DataInitilizr implements ApplicationListener<ContextRefreshedEvent> {
-	
+
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Autowired
 	UserRepositoryMongo userRepositoryMongo;
-	
+
 	@Autowired
 	SWAPIService Swapi;
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 		//sempre é chamado na inicialização, pode ser usado como configuração
-
+/*
 		addUser("Pedro",21);
 		addUser("Armando",22);
 		addUser("Daniele",35);
 		addUser("Otavio",100);
-		
-		//addUserM("batata","1");
-		
-		
-		User user1 = userRepository.findByName("Pedro");
-		System.out.println(user1.getName());
+		*/
+		addUserM("batata","1");
+		addUserM("eae","1");
+		addUserM("user1","1");
+		addUserM("user2","1");
+		addUserM("test","1");
+		addUserM("aws","1");
 
+
+/*		User user1 = userRepository.findByName("Pedro");
+		System.out.println(user1.getName());*/
 		
-		//UserM userM = userRepositoryMongo.findByName("batata");
-		//System.out.println(userM.getName());
+		UserM userM = userRepositoryMongo.findByName("batata");
+		System.out.println(userM.getName());
 		
 	}
-	
+
 	private void addUser(String nome,int idade) {
 		User user = new User();
 		user.setIdade(idade);
@@ -56,6 +60,12 @@ public class DataInitilizr implements ApplicationListener<ContextRefreshedEvent>
 		user.setIdade(idade);
 		user.setName(nome);
 		userRepositoryMongo.save(user);
+	}
+
+	public UserM methodForTest(String name, String idade){
+
+		return userRepositoryMongo.save(new UserM(name,idade));
+		//return userRepositoryMongo.findByName(name).getName();
 	}
 
 }
