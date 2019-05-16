@@ -14,14 +14,16 @@ import com.example.demo.service.SWAPIService;
 @Component
 public class DataInitilizr implements ApplicationListener<ContextRefreshedEvent> {
 
-	@Autowired
 	UserRepository userRepository;
-
-	@Autowired
 	UserRepositoryMongo userRepositoryMongo;
+	//SWAPIService Swapi;
 
-	@Autowired
-	SWAPIService Swapi;
+	public DataInitilizr(UserRepository userRepository,
+			UserRepositoryMongo userRepositoryMongo) {
+		this.userRepository = userRepository;
+		this.userRepositoryMongo = userRepositoryMongo;
+		//Swapi = swapi;
+	}
 
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -32,20 +34,23 @@ public class DataInitilizr implements ApplicationListener<ContextRefreshedEvent>
 		addUser("Daniele",35);
 		addUser("Otavio",100);
 		*/
-		addUserM("batata","1");
-		addUserM("eae","1");
-		addUserM("user1","1");
-		addUserM("user2","1");
-		addUserM("test","1");
-		addUserM("aws","1");
+		addUserM("testeeeeawdawdawd","1");
+//		addUserM("eae","1");
+//		addUserM("user1","1");
+//		addUserM("user2","1");
+//		addUserM("aws","1");
 
 
 /*		User user1 = userRepository.findByName("Pedro");
 		System.out.println(user1.getName());*/
 		
-		UserM userM = userRepositoryMongo.findByName("batata");
-		System.out.println(userM.getName());
-		
+//		UserM userM = userRepositoryMongo.findByName("batata");
+//		System.out.println(userM.getName());
+//
+//		System.out.println(methodForTest("usertest","10"));
+
+
+
 	}
 
 	private void addUser(String nome,int idade) {
@@ -62,10 +67,9 @@ public class DataInitilizr implements ApplicationListener<ContextRefreshedEvent>
 		userRepositoryMongo.save(user);
 	}
 
-	public UserM methodForTest(String name, String idade){
-
-		return userRepositoryMongo.save(new UserM(name,idade));
-		//return userRepositoryMongo.findByName(name).getName();
+	public String methodForTest(String name, String idade){
+		addUserM(name,idade);
+		return userRepositoryMongo.findByName(name).getName();
 	}
 
 }

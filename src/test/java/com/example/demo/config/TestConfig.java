@@ -1,15 +1,20 @@
+/*
 package com.example.demo.config;
+
 
 import com.mongodb.MongoClient;
 import cz.jirutka.spring.embedmongo.EmbeddedMongoFactoryBean;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
 
-@Configuration
-public class MongoConfig {
+@TestConfiguration
+public class TestConfig {
+
   private static final String MONGO_DB_URL = "localhost";
   private static final String MONGO_DB_NAME = "embeded_db";
 
@@ -22,3 +27,4 @@ public class MongoConfig {
     return mongoTemplate;
   }
 }
+*/
